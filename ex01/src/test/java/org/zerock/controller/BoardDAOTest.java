@@ -1,5 +1,7 @@
 package org.zerock.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -9,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,9 +27,15 @@ public class BoardDAOTest {
 	public void testCreate() throws Exception{
 		
 		BoardVO vo = new BoardVO();
-		vo.setTitle("제목");
-		vo.setContent("콘텐츠");
-		vo.setWriter("글쓴이");
+		/*for(int i=1; i<1000; i++){
+			vo.setTitle("이 글은"+i+"번 글 제목입니다.");
+			vo.setContent("이 글은 " + i + " 번 글입니다. 해당 내용은 생략 합니다.");
+			vo.setWriter("글쓴이 " + i);
+			dao.create(vo);
+		}*/
+		vo.setTitle("이 글은"+1000+"번 글 제목입니다.");
+		vo.setContent("이 글은 " + 1000 + " 번 글입니다. 해당 내용은 생략 합니다.");
+		vo.setWriter("글쓴이 " + 1000);
 		dao.create(vo);
 	}
 	
@@ -51,5 +60,31 @@ public class BoardDAOTest {
 	public void testDelte()  throws Exception{
 	
 		dao.delete(1);
+	}
+	
+	@Test
+	public void testListPage() throws Exception{
+		
+		int page = 3;
+		
+		List<BoardVO> list = dao.listPage(page);
+		
+		for(BoardVO boardVO: list){
+			logger.info(boardVO.getBno() + " : " + boardVO.getTitle());
+		}
+	}
+	
+	@Test
+	public void testListCriteria() throws Exception{
+		
+		Criteria cri = new Criteria();
+		cri.setPage(2);
+		cri.setPrePageNum(20);
+		
+		List<BoardVO> list = dao.listCriteria(cri);
+		
+		for(BoardVO boardVO: list){
+			logger.info(boardVO.getBno() + " : " + boardVO.getTitle());
+		}
 	}
 }
