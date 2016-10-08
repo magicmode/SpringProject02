@@ -3,11 +3,11 @@ package org.zerock.domain;
 public class Criteria {
 
 	private int page;
-	private int prePageNum;
+	private int perPageNum;
 	
 	public Criteria() {
 		this.page = 1;
-		this.prePageNum = 10;
+		this.perPageNum = 10;
 	}
 		
 	public int getPage() {
@@ -24,27 +24,27 @@ public class Criteria {
 		this.page = page;
 	}
 	
-	public int getPrePageNum() {
-		return prePageNum;
+	public int getPerPageNum() {
+		return perPageNum;
 	}
 	
-	public void setPrePageNum(int prePageNum) {
+	public void setPerPageNum(int perPageNum) {
 		
-		if (prePageNum <= 0 || prePageNum > 100) {
-			this.prePageNum = 10;
+		if (perPageNum <= 0 || perPageNum > 100) {
+			this.perPageNum = 10;
 			return;
 		}
 		
-		this.prePageNum = prePageNum;
+		this.perPageNum = perPageNum;
 	}
 	
 	public int getPageStart() {
-		return (this.page - 1) * prePageNum;
+		return (this.page - 1) * perPageNum;
 	}
 
 	@Override
 	public String toString() {
-		return "Criteria [page=" + page + ", prePageNum=" + prePageNum + "]";
+		return "Criteria!! [page=" + page + ", perPageNum=" + perPageNum + "]";
 	}
 	
 }
