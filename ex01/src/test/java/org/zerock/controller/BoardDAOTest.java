@@ -14,6 +14,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.SearchCriteria;
 import org.zerock.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -105,4 +106,25 @@ public class BoardDAOTest {
 	 logger.info(uriComponents.toString());
 	}
 	
+	// 동적 쿼리 테스트
+	@Test
+	public void testDynamic1() throws Exception{
+		
+		SearchCriteria cri = new SearchCriteria();
+		cri.setPage(1);
+		cri.setKeyword("999");
+		cri.setSearchType("t");
+		
+		logger.info("===================================");
+		
+		List<BoardVO> list = dao.listSearch(cri);
+		
+		for(BoardVO boardVo: list){
+			logger.info(boardVo.getBno() + " : " + boardVo.getTitle());
+		}
+		
+		logger.info("===================================");
+		
+		logger.info("COUNT : " + dao.listSearchCount(cri) );
+	}
 }
