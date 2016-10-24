@@ -13,4 +13,5 @@ public interface ReplyService {
 	public void modifyReply(ReplyVO vo) throws Exception;
 	
 	public void removeReply(Integer rno) throws Exception;
+	
 }

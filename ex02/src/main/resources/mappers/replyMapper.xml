@@ -13,11 +13,11 @@
 	
 	<insert id="create">
 		insert into tbl_reply (bno,replyText, replyer)
-		values (#{{bno},#{replyText},#{replyer})
+		values (#{bno},#{replyText},#{replyer})
 	</insert>
 	
 	<update id="update">
-		update tbl_teply set replyText = #{replyText}, updateDate = now()
+		update tbl_reply set replyText = #{replyText}, updateDate = now()
 		where rno = #{rno}
 	</update>
 	
