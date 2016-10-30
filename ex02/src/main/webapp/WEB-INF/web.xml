@@ -64,4 +64,13 @@
         <param-value>ex02.webapp.root</param-value>
     </context-param>
 
+	<!-- 3) OverloadedPOST -->
+	<filter>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
 </web-app>
